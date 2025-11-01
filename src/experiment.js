@@ -24,7 +24,33 @@ import {text_trial1, text_trial2, text_practice1, text_practice2} from "./texts"
 export async function run({ assetPaths, input = {}, environment, title, version }) {
   const jsPsych = initJsPsych({
     on_finish: function() {
-      jsPsych.data.displayData();
+      // Save data to file
+      const data = jsPsych.data.get();
+      const timestamp = Date.now();
+      const dataJson = data.json();
+      
+      // Create a blob and download it as JSON
+      const blob = new Blob([dataJson], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `results_${timestamp}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      // Also save as CSV for easier analysis
+      const dataCsv = data.csv();
+      const blobCsv = new Blob([dataCsv], { type: 'text/csv' });
+      const urlCsv = URL.createObjectURL(blobCsv);
+      const linkCsv = document.createElement('a');
+      linkCsv.href = urlCsv;
+      linkCsv.download = `results_${timestamp}.csv`;
+      document.body.appendChild(linkCsv);
+      linkCsv.click();
+      document.body.removeChild(linkCsv);
+      URL.revokeObjectURL(urlCsv);
     }
   });
 
