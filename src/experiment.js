@@ -135,11 +135,11 @@ export async function run({ assetPaths, input = {}, environment, title, version 
               type: 'text',
               title: "Participant ID",
               description: "We want to anonymize your data, so please fill"
-                  + " out this field as follows: Combine the 3 Characters"
-                  + " of your Fathers first name with the 3 Characters from"
+                  + " out this field as follows: Combine the 2 Characters"
+                  + " of your Fathers first name with the 2 Characters from"
                   + " your Mothers first name and the day of your birhtday."
-                  + " Example: Father: Mustafa, Mother: Gina, Birthday:"
-                  + " 15.09.2000 - ID: MUSGIN15",
+                  + " Example: Father: Mustafa, Mother: Alana, Birthday:"
+                  + " 15.09.2000 - ID: MUAL15",
               name: 'participant-id',
               placeholder: "Participant ID",
               isRequired: true,
