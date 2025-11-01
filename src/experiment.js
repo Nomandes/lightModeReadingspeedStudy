@@ -65,32 +65,31 @@ export async function run({ assetPaths, input = {}, environment, title, version 
   });
 
   // Welcome screen
-  // timeline.push({
-  //   type: HtmlKeyboardResponsePlugin,
-  //   stimulus: "<p>Welcome to DarkOrLight! Press any Key to Continue<p/>",
-  //   choices: ["Enter"],
-  // });
+  timeline.push({
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: "<p>Welcome to DarkOrLight! Press any Key to Continue<p/>",
+    choices: ["Enter"],
+  });
 
   // Switch to fullscreen
-  // timeline.push({
-  //   type: FullscreenPlugin,
-  //   fullscreen_mode: true,
-  // });
-  //
-  // timeline.push({
-  //     type: HtmlKeyboardResponsePlugin,
-  //     stimulus: `
-  //   <p>In this experiment, you will read different texts in different background
-  //   and text colors</p><p>We will start with a trial round where you can get
-  //   familiar with the environment, after that there will follow two tasks.
-  //   After every reading you will have a short break</p><p>Please start reading
-  //   as soon as the text is visible and end the trial when finished by hitting
-  //   Enter on the keyboard</p>
-  //   <p>Press Enter to begin.</p>
-  // `,
-  //   choices: ["Enter"],
-  //   post_trial_gap: 2000
-  // });
+  timeline.push({
+    type: FullscreenPlugin,
+    fullscreen_mode: true,
+  });
+
+  timeline.push({
+      type: HtmlKeyboardResponsePlugin,
+      stimulus: `
+    <p>In this experiment, you will read different texts in different background
+    and text colors</p><p>We will start with a trial round where you can get
+    familiar with the environment, after that there will follow two tasks.
+    After every reading you will have a short break</p><p>Please start reading
+    as soon as the text is visible and end the trial when finished by hitting
+    Enter on the keyboard</p>
+    <p>Press Enter to begin.</p>
+  `,
+    choices: ["Enter"]
+  });
 
   timeline.push({
     type: jsPsychSurvey,
@@ -180,22 +179,6 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     randomize_order: true
   };
 
-  // const comprehension_question = {
-  //   type: jsPsychSurvey,
-  //   title: 'Comprehension Questions',
-  //   survey_json: {
-  //     elements:
-  //         [
-  //           {
-  //             type: 'radiogroup',
-  //             title: "What did the towns name stood for?",
-  //             name: 'comprehension 1',
-  //             choices: ['18 to 24', '25 to 34', '35 to 4', '45 to 54', '55'
-  //             + ' to 64','65 or over']
-  //           },
-  //         ]
-  //   }
-  // };
   timeline.push({
     timeline: [practice],
     timeline_variables: practice_content
