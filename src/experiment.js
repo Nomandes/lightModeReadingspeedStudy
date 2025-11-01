@@ -138,8 +138,26 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     type: HtmlKeyboardResponsePlugin,
     stimulus: `
     <h3>Break</h3>
-    <h4>You have 30 seconds to rest! We will anounce when to hit enter to move on</h4>`,
-    choices: ["Enter"]
+    <h4>You have <span id="countdown">30</span> seconds to rest!</h4>
+    <p>Press Enter to continue early, or wait for the timer to finish.</p>`,
+    choices: ["Enter"],
+    trial_duration: 30000, // Auto-advance after 30 seconds
+    response_ends_trial: true, // Allow early exit with Enter
+    on_load: function() {
+      let timeLeft = 30;
+      const countdownEl = document.getElementById('countdown');
+      if (countdownEl) {
+        const interval = setInterval(function() {
+          timeLeft--;
+          if (countdownEl) {
+            countdownEl.textContent = timeLeft;
+          }
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      }
+    }
   };
 
   const practice_content = [
@@ -239,6 +257,18 @@ export async function run({ assetPaths, input = {}, environment, title, version 
             }
           ]
     }
+  });
+
+  // Final thank you screen
+  timeline.push({
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `
+    <div style="text-align: center; padding: 50px;">
+      <h2>Thank you for participation!</h2>
+      <h3>You deserve some snacks</h3>
+    </div>`,
+    choices: "NO_KEYS",
+    trial_duration: 5000 // Show for 5 seconds, then auto-advance
   });
 
   await jsPsych.run(timeline);
