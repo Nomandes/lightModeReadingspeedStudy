@@ -88,7 +88,7 @@ export async function run({ assetPaths, input = {}, environment, title, version 
   // Mode 2:[practice_content2, trial_content2];
   // Mode 3:[practice_content, trial_content3];
   // Mode 4:[practice_content2, trial_content4];
-  const used_stimuli = [practice_content2, trial_content2];
+  const used_stimuli = [practice_content, trial_content];
 
   // Preload assets
   timeline.push({
