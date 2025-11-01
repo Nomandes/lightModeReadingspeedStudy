@@ -56,6 +56,25 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   const timeline = [];
 
+  const trial_content = [
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
+  ];
+  const trial_content2 = [
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"}
+  ];
+  const trial_content3 = [
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
+  ];
+  const trial_content4 = [
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"}
+  ];
+
+  const used_trial_content = trial_content;
+
   // Preload assets
   timeline.push({
     type: PreloadPlugin,
@@ -186,24 +205,6 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   timeline.push(trial_break);
 
-  const trial_content = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
-  ];
-  const trial_content2 = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"}
-  ];
-  const trial_content3 = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
-  ];
-  const trial_content4 = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"}
-  ];
-
-
   const trial = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: [jsPsych.timelineVariable('stimulus')],
@@ -214,14 +215,14 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   timeline.push({
     timeline: [trial],
-    timeline_variables: [trial_content[0]]
+    timeline_variables: [used_trial_content[0]]
   });
 
   timeline.push(trial_break);
 
   timeline.push({
     timeline: [trial],
-    timeline_variables: [trial_content[1]]
+    timeline_variables: [used_trial_content[1]]
   });
 
   timeline.push({
