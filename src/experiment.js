@@ -56,6 +56,16 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   const timeline = [];
 
+  const practice_content = [
+    {stimulus: `<div class="text-box"><p class="trial-text">${text_practice1}<p/></div>`, mode: "light-mode"},
+    {stimulus: `<div class="text-box"><p class="trial-text">${text_practice2}<p/></div>`, mode: "dark-mode"},
+  ];
+
+  const practice_content2 = [
+    {stimulus: `<div class="text-box"><p class="trial-text">${text_practice1}<p/></div>`, mode: "dark-mode"},
+    {stimulus: `<div class="text-box"><p class="trial-text">${text_practice2}<p/></div>`, mode: "light-mode"},
+  ];
+
   const trial_content = [
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"},
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
@@ -73,7 +83,12 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"}
   ];
 
-  const used_trial_content = trial_content;
+  // Valid Combination
+  // Mode 1: [practice_content, trial_content];
+  // Mode 2:[practice_content2, trial_content2];
+  // Mode 3:[practice_content, trial_content3];
+  // Mode 4:[practice_content2, trial_content4];
+  const used_stimuli = [practice_content2, trial_content2];
 
   // Preload assets
   timeline.push({
@@ -178,17 +193,6 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     }
   };
 
-  const practice_content = [
-    {
-      stimulus: `<div class="text-box"><p class="trial-text">${text_practice1}<p/></div>`,
-      mode: "light-mode"
-    },
-    {
-      stimulus: `<div class="text-box"><p class="trial-text">${text_practice2}<p/></div>`,
-      mode: "dark-mode"
-    },
-  ];
-
   const practice = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: [jsPsych.timelineVariable('stimulus')],
@@ -200,7 +204,7 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   timeline.push({
     timeline: [practice],
-    timeline_variables: practice_content
+    timeline_variables: used_stimuli[0]
   });
 
   timeline.push(trial_break);
@@ -215,14 +219,14 @@ export async function run({ assetPaths, input = {}, environment, title, version 
 
   timeline.push({
     timeline: [trial],
-    timeline_variables: [used_trial_content[0]]
+    timeline_variables: [used_stimuli[1][0]]
   });
 
   timeline.push(trial_break);
 
   timeline.push({
     timeline: [trial],
-    timeline_variables: [used_trial_content[1]]
+    timeline_variables: [used_stimuli[1][1]]
   });
 
   timeline.push({
