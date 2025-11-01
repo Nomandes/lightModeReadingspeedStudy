@@ -84,7 +84,7 @@ export async function run({ assetPaths, input = {}, environment, title, version 
   ];
 
   // Valid Combination
-  // Mode 1: [practice_content, trial_content];
+  // Mode 1:[practice_content, trial_content];
   // Mode 2:[practice_content2, trial_content2];
   // Mode 3:[practice_content, trial_content3];
   // Mode 4:[practice_content2, trial_content4];
@@ -172,8 +172,8 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     stimulus: `
     <h3>Break</h3>
     <h4>You have <span id="countdown">30</span> seconds to rest!</h4>
-    <p>Press Enter to continue early, or wait for the timer to finish.</p>`,
-    choices: ["Enter"],
+    <p>Wait for the timer to finish. After that the new trial will automatically start</p>`,
+    choices: ["NoKeys"],
     trial_duration: 30000, // Auto-advance after 30 seconds
     response_ends_trial: true, // Allow early exit with Enter
     on_load: function() {
