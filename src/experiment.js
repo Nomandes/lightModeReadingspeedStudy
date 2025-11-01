@@ -195,12 +195,12 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"}
   ];
   const trial_content3 = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
   ];
   const trial_content4 = [
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
-    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"}
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "dark-mode"},
+    { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "light-mode"}
   ];
 
 
