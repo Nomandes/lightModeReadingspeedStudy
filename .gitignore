@@ -24,3 +24,4 @@ dist
 .output
 
 .idea/
+/.jspsych-builder/*
