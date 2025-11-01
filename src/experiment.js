@@ -138,9 +138,8 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     type: HtmlKeyboardResponsePlugin,
     stimulus: `
     <h3>Break</h3>
-    <h4>The next Task will follow in 1 Minute!</h4>`,
-    choices: ["Enter"],
-    post_trial_gap: 2000
+    <h4>You have 30 seconds to rest! We will anounce when to hit enter to move on</h4>`,
+    choices: ["Enter"]
   };
 
   const practice_content = [
@@ -180,7 +179,7 @@ export async function run({ assetPaths, input = {}, environment, title, version 
   //   }
   // };
   timeline.push({
-    timeline: [practice, trial_break],
+    timeline: [practice],
     timeline_variables: practice_content
   });
 
