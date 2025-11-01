@@ -183,6 +183,8 @@ export async function run({ assetPaths, input = {}, environment, title, version 
     timeline_variables: practice_content
   });
 
+  timeline.push(trial_break);
+
   const trial_content = [
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial1}<p/></div>`, mode: "light-mode"},
     { stimulus: `<div class="text-box"><p class="trial-text">${text_trial2}<p/></div>`, mode: "dark-mode"},
@@ -210,8 +212,15 @@ export async function run({ assetPaths, input = {}, environment, title, version 
   };
 
   timeline.push({
-    timeline: [trial,trial_break],
-    timeline_variables: trial_content
+    timeline: [trial],
+    timeline_variables: [trial_content[0]]
+  });
+
+  timeline.push(trial_break);
+
+  timeline.push({
+    timeline: [trial],
+    timeline_variables: [trial_content[1]]
   });
 
   timeline.push({
